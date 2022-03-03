@@ -13,4 +13,6 @@ changes you think would improve:
 * Reliability
 * Security
 * Maintainability
-
+* Usability
+* Accessibility
+* I18n (internationalisation)
