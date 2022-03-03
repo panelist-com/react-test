@@ -7,6 +7,7 @@ function App() {
   const [aliens, setAliens] = useState(0);
   const [robots, setRobots] = useState(0);
   const [countdown, setCountdown] = useState(60);
+  const [zombies, setZombies] = useState(0);
 
   setTimeout(() => countdown && setCountdown(countdown - 1), 1000);
 
