@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,6 +28,16 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#robots">Robots</Nav.Link>
+            <Nav.Link href="#aliens">Aliens</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
       <Container fluid>
         <Row justify-content-md-center>
           <Col className="coll-2">
@@ -35,19 +45,41 @@ function App() {
             <button onClick={reset}>New Game</button>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <h3>{robots} robots</h3>
-            <button onClick={() => setRobots(robots + 1)}>Add Robot</button>
-          </Col>
-          <Col>
-            <h3>{aliens} aliens</h3>
-            <button onClick={() => setAliens(aliens + 1)}>Add Alien</button>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="2"></Col>
-        </Row>
+        {window.location.hash === "#robots" ? (
+          <>
+            <h3>Robots</h3>
+            {Array(robots)
+              .fill(null)
+              .map(() => (
+                <div>🤖</div>
+              ))}
+          </>
+        ) : window.location.hash === "#aliens" ? (
+          <>
+            <h3>Aliens</h3>
+            {Array(aliens)
+              .fill(null)
+              .map(() => (
+                <div>👽</div>
+              ))}
+          </>
+        ) : (
+          <>
+            <Row>
+              <Col>
+                <h3>{robots} robots</h3>
+                <button onClick={() => setRobots(robots + 1)}>Add Robot</button>
+              </Col>
+              <Col>
+                <h3>{aliens} aliens</h3>
+                <button onClick={() => setAliens(aliens + 1)}>Add Alien</button>
+              </Col>
+            </Row>
+            <Row>
+              <Col md="2"></Col>
+            </Row>
+          </>
+        )}
       </Container>
     </div>
   );
